@@ -17,4 +17,10 @@ public class Ostcal extends Sprite{
 		// TODO Auto-generated method stub
 		super.drawSelf(canvas, paint);
 	}
+	
+	@Override
+	public void move(float dx, float dy) {
+		// TODO Auto-generated method stub
+		super.move(dx, dy);
+	}
 }

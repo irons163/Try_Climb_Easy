@@ -1,9 +1,12 @@
 package com.example.try_climb;
 
+import com.example.try_gameengine.framework.Config;
 import com.example.try_gameengine.stage.BaseStage;
 
+import android.graphics.Color;
 //import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -14,6 +17,7 @@ public class MainActivity extends BaseStage {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 //		setContentView(R.layout.activity_main);
+
 	}
 
 	@Override
@@ -38,7 +42,25 @@ public class MainActivity extends BaseStage {
 	@Override
 	protected void initGame() {
 		// TODO Auto-generated method stub
+		if(CommonUtil.screenHeight<=0){
+			DisplayMetrics dm = new DisplayMetrics();
+			getWindowManager().getDefaultDisplay().getMetrics(dm);
+			
+			CommonUtil.screenHeight = dm.heightPixels;
+			CommonUtil.screenWidth = dm.widthPixels;
+			CommonUtil.statusBarHeight = CommonUtil.getStatusBarHeight(this);
+			CommonUtil.screenHeight -= CommonUtil.statusBarHeight;
+		}
 		
+		Config.enableFPSInterval = true;
+		Config.showMovementActionThreadNumber = true;
+		Config.showAllThreadNumber = true;
+		Config.debugMessageColor = Color.WHITE;
+		Config.fps = 40;
+		Config.showFPS = true;
+//		Config.destanceType = DestanceType.ScreenPersent;
+		Config.currentScreenWidth = CommonUtil.screenWidth;
+		Config.currentScreenHeight = CommonUtil.screenHeight;
 	}
 
 	@Override
